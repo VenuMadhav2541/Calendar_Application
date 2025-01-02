@@ -1,0 +1,83 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+#company {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    width: 98%;
+    margin-left: 1%;
+    border: 0 solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.952);
+    border-radius: 20px;
+    
+  }
+  
+  #company td, #company th {
+    padding: 10px;
+  }
+  
+  #company tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #company tr:hover {background-color: #ddd;}
+  
+  #company th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+    color: white;
+  }
+
+  input[type="checkbox"] {
+    height: 30px;
+    width: 30px;
+    margin: auto;
+  }
+
+  
+.btn-grad-s {background-image: linear-gradient(to right, #329472e4 0%, #93F9B9  51%, #3b9777  100%)}
+.btn-grad-c {background-image: linear-gradient(to right, #fe8c00 0%, #f83600  51%, #fe8c00  100%)}
+
+input[type="date"]{
+    width: 20vw;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid rgba(56, 56, 56, 0.459);
+    background-color: white !important;
+    color: black;
+}
+
+textarea{
+    width: 40vw;
+    border-radius: 20px;
+}
+
+select{
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.btn-grad-p {background-image: linear-gradient(to right, #00c6ff 0%, #0072ff  51%, #00c6ff  100%)}
+
+#report{
+  width: 30vw;
+}
+
+.margin{
+  margin: 10px !important;
+}
+
+.card2{
+  width: 45vw;
+  height: 60vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 20px rgba(8, 7, 16, 0.952);
+  margin: 20px !important;
+  padding: 20px;
+}

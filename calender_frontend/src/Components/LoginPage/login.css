@@ -1,0 +1,115 @@
+*,
+*:before,
+*:after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.main{
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form_Position{
+  position: absolute;
+  left: 60%;
+  top: 20%;
+  color: #ffffff;
+  height: 360px;
+  width: 400px;
+}
+
+form{
+  
+  background-color: rgba(255,255,255,0.13);
+  
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.952);
+  padding: 50px 35px;
+}
+form *{
+  font-family: 'Poppins',sans-serif;
+  
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+label{
+  display: block;
+  margin: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+input{
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(27, 26, 26, 0.386);
+  border: none;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+input:hover{
+  background-color: rgb(11, 11, 11);
+  color: white;
+}
+
+
+
+.btn-grad {background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%)}
+.btn-grad {
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 1s;
+   background-size: 200% auto;
+   color: white;  
+   margin-top: 50px;
+   border: none;         
+   box-shadow: 0 0 5px #eee;
+   border-radius: 10px;
+   display: block;
+   margin: auto;
+   cursor: pointer;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; 
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(25, 23, 23, 0.612);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}

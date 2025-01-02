@@ -1,0 +1,17 @@
+.margin_top{
+    padding-top: 7%;
+}
+
+.form_Admin{
+    margin: 30px;
+    margin-left: 30%;
+    width: 500px;
+}
+
+.side_image img{
+    border: 2px solid white;
+    margin: 10px;
+    padding: 20px;
+    height: 60vh;
+    width: 50vw;
+}

@@ -1,0 +1,47 @@
+
+.corosel_main{
+    background-color: black !important;
+    background-size: cover;
+    height: 100vh;
+    color: white !important;
+    background-repeat: no-repeat;
+    
+}
+
+
+.para{
+    margin-top: 20px;
+    font-size: 20px !important;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.drop-in {
+    animation: drop-in 1s ease 200ms backwards !important;
+   }
+   
+   .drop-in-2 {
+    animation: drop-in 1200ms ease 500ms backwards;
+   }
+   
+   @keyframes drop-in {
+    from {
+     opacity: 0;
+     transform: translateY(-100px);
+    }
+    to {
+     opacity: 1;
+     transform: translate(0px);
+    }
+   }
+
+
+
+.side_image_2 img{
+    border: 2px solid white;
+    margin: 10px;
+    padding: 10px;
+    height: 40vh;
+    width: 50vw;
+}
