@@ -48,10 +48,8 @@ const Head = () => {
           <div className='different'>Calendar</div>
         </NavLink>
 
-        <NavLink to={'/report'} className='item'>
-          <div className='different'>Report And Analysis</div>
-        </NavLink>
-        <button onClick={handleLogout} className='item'>
+        
+        <button onClick={handleLogout} className='item item1'>
           <div className='list different'>Logout</div>
         </button>
       </div>

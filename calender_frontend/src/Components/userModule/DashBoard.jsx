@@ -3,22 +3,25 @@ import './dashboard.css';
 import { Tooltip } from 'react-tooltip';
 import axios from 'axios';
 import Head from '../NavBar/Head';
+import Loading from '../Loading'; 
+import defaultMethods from '../../Data/methods';
 
 function Dashboard() {
   const [companies, setCompanies] = useState([]);
   const [selectedCompanies, setSelectedCompanies] = useState([]);
-  const [communicationTypes, setCommunicationTypes] = useState([]); // New state for dropdown options
+  const [communicationTypes, setCommunicationTypes] = useState([]);
   const [newCommunication, setNewCommunication] = useState({
     type: '',
     date: '',
     notes: ''
   });
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);  // Loading state
 
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/companies');
+        const response = await axios.get('https://calendar-application-7sna.onrender.com/api/companies');
         setCompanies(response.data);
       } catch (error) {
         console.error('Error fetching companies:', error);
@@ -27,15 +30,21 @@ function Dashboard() {
 
     const fetchCommunicationTypes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/communicationMethods'); // Fetch from backend
+        const response = await axios.get('https://calendar-application-7sna.onrender.com/api/communicationMethods');
         setCommunicationTypes(response.data);
       } catch (error) {
         console.error('Error fetching communication methods:', error);
       }
     };
 
-    fetchCompanies();
-    fetchCommunicationTypes(); // Fetch methods on mount
+    // Fetch data and update loading state
+    const fetchData = async () => {
+      await fetchCompanies();
+      await fetchCommunicationTypes();
+      setLoading(false);  // Set loading to false once data is fetched
+    };
+
+    fetchData();
   }, []);
 
   const handleSelectCompany = (id) => {
@@ -67,7 +76,7 @@ function Dashboard() {
 
       for (const companyId of selectedCompanies) {
         await axios.put(
-          `http://localhost:5000/api/dashboard/updateCommunication/${companyId}`,
+          `https://calendar-application-7sna.onrender.com/api/dashboard/updateCommunication/${companyId}`,
           { communication: communicationData }
         );
       }
@@ -94,103 +103,111 @@ function Dashboard() {
     <div>
       <Head />
       <div className="dashboard">
-        <table id="company">
-          <thead>
-            <tr>
-              <th>Company Name</th>
-              <th>Last Five Communications</th>
-              <th>Next Scheduled Communication</th>
-              <th>Select</th>
-            </tr>
-          </thead>
-          <tbody>
-            {companies.map((company) => (
-              <tr key={company._id}>
-                <td>{company.name}</td>
-                <td>
-                  {company.communications && company.communications.length > 0 ? (
-                    company.communications.map((comm, index) => (
-                      <span
-                        key={index}
-                        data-tooltip-id={`tooltip-${company._id}-${index}`}
-                        style={{ marginRight: '10px', cursor: 'pointer' }}
-                      >
-                        {comm.type} ({new Date(comm.date).toDateString()})
-                        <Tooltip id={`tooltip-${company._id}-${index}`}>
-                          {comm.notes || 'No notes available'}
-                        </Tooltip>
-                      </span>
-                    ))
-                  ) : (
-                    <span>No Communication yet</span>
-                  )}
-                </td>
-                <td>
-                  {company.nextCommunication
-                    ? `${company.nextCommunication.type} (${new Date(company.nextCommunication.date).toDateString()})`
-                    : 'No upcoming communications'}
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedCompanies.includes(company._id)}
-                    onChange={() => handleSelectCompany(company._id)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <button className="btn-grad btn-grad-p" onClick={() => setShowModal(true)}>
-          Communication Performed
-        </button>
-
-        {showModal && (
-          <div className="modal">
-            <div className="main_head">
-              <h2>Log Communication</h2>
-            </div>
-            <div className="center">
-              <select
-                value={newCommunication.type}
-                onChange={(e) =>
-                  setNewCommunication({ ...newCommunication, type: e.target.value })
-                }
-              >
-                <option value="">Select Communication Type</option>
-                {communicationTypes.map((method) => (
-                  <option key={method._id} value={method.name}>
-                    {method.name}
-                  </option>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <table id="company">
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Last Five Communications</th>
+                  <th>Next Scheduled Communication</th>
+                  <th>Select</th>
+                </tr>
+              </thead>
+              <tbody>
+                {companies.map((company) => (
+                  <tr key={company._id}>
+                    <td>{company.name}</td>
+                    <td>
+                      {company.communications && company.communications.length > 0 ? (
+                        company.communications.map((comm, index) => (
+                          <span
+                            key={index}
+                            data-tooltip-id={`tooltip-${company._id}-${index}`}
+                            style={{ marginRight: '10px', cursor: 'pointer' }}
+                          >
+                            {comm.type} ({new Date(comm.date).toDateString()})
+                            <Tooltip id={`tooltip-${company._id}-${index}`}>
+                              {comm.notes || 'No notes available'}
+                            </Tooltip>
+                          </span>
+                        ))
+                      ) : (
+                        <span>No Communication yet</span>
+                      )}
+                    </td>
+                    <td>
+                      {company.nextCommunication
+                        ? `${company.nextCommunication.type} (${new Date(company.nextCommunication.date).toDateString()})`
+                        : 'No upcoming communications'}
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedCompanies.includes(company._id)}
+                        onChange={() => handleSelectCompany(company._id)}
+                      />
+                    </td>
+                  </tr>
                 ))}
-              </select>
-              <input
-                type="date"
-                value={newCommunication.date}
-                className="date-input"
-                onChange={(e) =>
-                  setNewCommunication({ ...newCommunication, date: e.target.value })
-                }
-              />
-              <textarea
-                value={newCommunication.notes}
-                onChange={(e) =>
-                  setNewCommunication({ ...newCommunication, notes: e.target.value })
-                }
-              />
-            </div>
-            <div className="center">
-              <button className="btn-grad btn-grad-s" onClick={handleAddCommunication}>
-                Log Communication
-              </button>
-              <button className="btn-grad btn-grad-c" onClick={() => setShowModal(false)}>
-                Close
-              </button>
-            </div>
-          </div>
+              </tbody>
+            </table>
+            <button className="btn-grad btn-grad-p" onClick={() => setShowModal(true)}>
+              Communication Performed
+            </button>
+
+            {showModal && (
+              <div className="modal">
+                <div className="main_head">
+                  <h2>Log Communication</h2>
+                </div>
+                <div className="center">
+                <select
+                    value={newCommunication.type}
+                    onChange={(e) =>
+                      setNewCommunication({ ...newCommunication, type: e.target.value })
+                    }
+                  >
+                    <option value="">Select Communication Method</option>
+                    {defaultMethods.map((method) => (
+                      <option key={method.sequence} value={method.name}>
+                        {method.name}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="date"
+                    value={newCommunication.date}
+                    className="date-input"
+                    onChange={(e) =>
+                      setNewCommunication({ ...newCommunication, date: e.target.value })
+                    }
+                  />
+                  <textarea
+                    value={newCommunication.notes}
+                    style={{padding:20}}
+                    onChange={(e) =>
+                      setNewCommunication({ ...newCommunication, notes: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="center">
+                  <button className="btn-grad btn-grad-s" onClick={handleAddCommunication}>
+                    Log Communication
+                  </button>
+                  <button className="btn-grad btn-grad-c" onClick={() => setShowModal(false)}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 
+      {/* Notifications Section */}
       <div className="Notification">
         <div className="main_head">
           <h1>Notification</h1>

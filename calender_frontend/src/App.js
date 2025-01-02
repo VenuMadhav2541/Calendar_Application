@@ -5,7 +5,7 @@ import LoginPage from './Components/LoginPage/LoginPage';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import UserModule from './Components/userModule/UserModule';
 import Dashboard from './Components/userModule/DashBoard';
-import ReportingModule from './Components/userModule/ReportingModule';
+import ReportingModule from './Components/AdminPanel/ReportingModule';
 import About from './Components/userModule/About';
 import CommunicationMethodManagement from './Components/AdminPanel/CommunicationMethodManagement'
 import CompanyManagement from './Components/AdminPanel/CompanyManagement'

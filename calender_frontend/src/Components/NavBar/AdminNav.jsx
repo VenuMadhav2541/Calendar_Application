@@ -43,7 +43,10 @@ const Head = () => {
           <NavLink to={'/communication'} className="item">
               <div className='different'>Communication</div>
           </NavLink>
-          <button onClick={handleLogout} className='item'>
+          <NavLink to={'/report'} className='item'>
+          <div className='different'>Report And Analysis</div>
+        </NavLink>
+          <button onClick={handleLogout} className='item item1'>
             <div className='list different'>Logout</div>
           </button>
         </div>

@@ -2,7 +2,7 @@
   "name": "calender_frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://calendar-application-7sna.onrender.com",
   "dependencies": {
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
@@ -20,13 +20,13 @@
     "react-csv": "^2.2.2",
     "react-dom": "^19.0.0",
     "react-google-login": "^5.2.2",
+    "react-loading-indicators": "^1.0.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.28.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

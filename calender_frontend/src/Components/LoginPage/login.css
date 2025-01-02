@@ -12,13 +12,17 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.color{
+  color: white !important;
+  letter-spacing: 1px;
+}
 
 .form_Position{
   position: absolute;
   left: 60%;
-  top: 20%;
+  top: 15%;
   color: #ffffff;
-  height: 360px;
+  
   width: 400px;
 }
 
@@ -61,7 +65,7 @@ input{
 }
 
 input:hover{
-  background-color: rgb(11, 11, 11);
+  background-color: rgba(249, 249, 249, 0.468);
   color: white;
 }
 

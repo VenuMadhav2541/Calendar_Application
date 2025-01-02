@@ -5,7 +5,7 @@ const Events = () => {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/events')
+        axios.get('https://calendar-application-7sna.onrender.com/api/events')
             .then(response => setEvents(response.data))
             .catch(error => console.error('Error fetching events:', error));
     }, []);

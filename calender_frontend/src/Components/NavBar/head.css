@@ -34,7 +34,6 @@
 
 .item{
     text-decoration: none;
-    background-color: inherit;
     border: none;
     color: white;
     margin-top: 3px;
@@ -44,6 +43,9 @@
     font-size: 20px;
 }
 
+.item1{
+    background-color: inherit !important;
+}
 
 .different{
     border:none;

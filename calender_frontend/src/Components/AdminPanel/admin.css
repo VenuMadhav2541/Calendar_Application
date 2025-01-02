@@ -11,6 +11,7 @@
 .side_image img{
     border: 2px solid white;
     margin: 10px;
+    margin-top: 40px;
     padding: 20px;
     height: 60vh;
     width: 50vw;

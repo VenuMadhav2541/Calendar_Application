@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ['admin', 'user'] // You can add more roles as needed
+  },
+  Name:{
+    type: String,
+    required: true
+  },
+  Email:{
+    type: String,
+    required: true
   }
 });
 

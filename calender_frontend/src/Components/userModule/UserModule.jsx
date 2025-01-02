@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './user.css';
+// import { Atom } from 'react-loading-indicators';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios'; // Import axios for making API requests
 import Head from '../NavBar/Head';
+import Loading from '../Loading'; // Import your Loading component
 
 const localizer = momentLocalizer(moment);
 
-function UserDashboard() {
+function Calender() {
   const [companies, setCompanies] = useState([]);
   const [events, setEvents] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -18,15 +20,18 @@ function UserDashboard() {
     date: '',
     notes: ''
   });
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   // Fetch companies and communications from the server
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/companies'); // Replace with your API endpoint
+        const response = await axios.get('https://calendar-application-7sna.onrender.com/api/companies'); // Replace with your API endpoint
         setCompanies(response.data);
       } catch (error) {
         console.error('Error fetching companies:', error);
+      } finally {
+        setIsLoading(false); // Set loading to false after data is fetched
       }
     };
 
@@ -95,29 +100,33 @@ function UserDashboard() {
         </div>
 
         <div className="center">
-          <Calendar
-            localizer={localizer}
-            className="calendar"
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 600 }}
-            date={currentDate}
-            onNavigate={(date) => setCurrentDate(date)} // Update state when navigating
-            eventPropGetter={(event) => ({
-              style: {
-                backgroundColor: event.color,
-              },
-            })}
-            views={['month', 'week', 'day', 'agenda']}
-            defaultView="month"
-            toolbar={true}
-            step={30}
-          />
+          {isLoading ? (
+            <Loading /> // Display loading spinner while fetching data
+          ) : (
+            <Calendar
+              localizer={localizer}
+              className="calendar"
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: 600 }}
+              date={currentDate}
+              onNavigate={(date) => setCurrentDate(date)} // Update state when navigating
+              eventPropGetter={(event) => ({
+                style: {
+                  backgroundColor: event.color,
+                },
+              })}
+              views={['month', 'week', 'day', 'agenda']}
+              defaultView="month"
+              toolbar={true}
+              step={30}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default UserDashboard;
+export default Calender;

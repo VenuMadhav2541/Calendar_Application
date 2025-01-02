@@ -1,33 +1,49 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 // import './register.css';
+import Loading from '../Loading';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
   const [role, setRole] = useState('user'); // Default to 'user' role
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault(); // Prevent page reload on form submit
-
+    setLoading(true);
+    
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post('https://calendar-application-7sna.onrender.com/api/auth/register', {
         username,
         password,
-        role
+        role,
+        Name,
+        Email
       });
 
-      alert(response.data.message); // Display success message
+      alert('Registration Successfully'); // Display success message
 
-      // Optionally, redirect to login page after successful registration
-      // navigate('/login');
+      navigate('/login');
     } catch (error) {
-      alert(error.response.data.message || 'Registration failed');
+      alert('Registration failed');
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleLogin = async () => {
+    setLoading(true);
+    navigate('/');
   };
 
   return (
     <div className="main">
+      {loading && <Loading />} {/* Show loading animation during registration */}
       <form className="form_Position" onSubmit={handleRegister}>
         <div>
           <div className="main_head">
@@ -49,15 +65,33 @@ const RegisterPage = () => {
           />
         </div>
         <div>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
+          <input
+              type="text"
+              placeholder="Name"
+              value={Name}
+            />
         </div>
-        <button className="btn-grad" type="submit">Register</button>
+        <div>
+          <input
+              type="text"
+              placeholder="Email"
+              value={Email}
+            />
+        </div>
+        <div className="row">
+
+          <button className="btn-grad" onClick={handleLogin} disabled={loading}>
+            Login
+          </button>
+          <button
+            type="button"
+            className="btn-grad"
+            onClick={handleRegister}
+            disabled={loading}
+          >
+            Register
+          </button>
+        </div>
       </form>
     </div>
   );
