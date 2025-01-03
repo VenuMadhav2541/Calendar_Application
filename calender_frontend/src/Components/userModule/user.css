@@ -13,7 +13,7 @@
 }
 
 .calendar{
-    margin-top: 30px;
+  margin-top: 30px;
   width: 95vw;
   height: 95vh;
   padding: 20px;
@@ -55,3 +55,43 @@ ul{
     list-style-type: none;
     padding: 10px;
 }
+
+@media (max-width: 768px) {
+    .calendar {
+      width: 90vw;  
+      height: auto; 
+      padding: 10px;
+      margin: 20px 5vw; 
+  
+    }
+    .row {
+      flex-direction: column;  
+      margin: 0;  
+    }
+  
+    
+    .center {
+      flex-direction: column; 
+      margin: 0px; 
+    }
+  }
+ 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .calendar {
+      width: 90vw; 
+      height: 90vh; 
+      margin: 30px 5vw;
+    }
+
+
+    .row {
+      flex-direction: row; 
+      flex-wrap: wrap; 
+    }
+  
+    
+    .center {
+      flex-direction: row;  
+      margin: 1px 0;
+    }
+  }

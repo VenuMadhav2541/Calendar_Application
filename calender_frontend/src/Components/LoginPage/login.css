@@ -1,3 +1,4 @@
+/* login.css */
 *,
 *:before,
 *:after{
@@ -5,40 +6,37 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 .main{
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .color{
   color: white !important;
   letter-spacing: 1px;
 }
 
 .form_Position{
-  position: absolute;
-  left: 60%;
-  top: 15%;
-  color: #ffffff;
-  
-  width: 400px;
-}
-
-form{
-  
   background-color: rgba(255,255,255,0.13);
-  
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.952);
   padding: 50px 35px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
 }
+
 form *{
   font-family: 'Poppins',sans-serif;
-  
   letter-spacing: 0.5px;
   outline: none;
   border: none;
@@ -50,6 +48,7 @@ label{
   font-size: 16px;
   font-weight: bold;
 }
+
 input{
   display: block;
   height: 50px;
@@ -69,36 +68,35 @@ input:hover{
   color: white;
 }
 
-
-
-.btn-grad {background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%)}
 .btn-grad {
-   padding: 15px 45px;
-   text-align: center;
-   text-transform: uppercase;
-   transition: 1s;
-   background-size: 200% auto;
-   color: white;  
-   margin-top: 50px;
-   border: none;         
-   box-shadow: 0 0 5px #eee;
-   border-radius: 10px;
-   display: block;
-   margin: auto;
-   cursor: pointer;
- }
+  background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 1s;
+  background-size: 200% auto;
+  color: white;  
+  margin-top: 20px;
+  border: none;         
+  box-shadow: 0 0 5px #eee;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+}
 
- .btn-grad:hover {
-   background-position: right center; 
-   color: #fff;
-   text-decoration: none;
- }
-
+.btn-grad:hover {
+  background-position: right center; 
+  color: #fff;
+  text-decoration: none;
+}
 
 .social{
   margin-top: 30px;
   display: flex;
+  justify-content: center;
 }
+
 .social div{
   background: red;
   width: 150px;
@@ -108,12 +106,35 @@ input:hover{
   color: #eaf0fb;
   text-align: center;
 }
+
 .social div:hover{
   background-color: rgba(25, 23, 23, 0.612);
 }
+
 .social .fb{
   margin-left: 25px;
 }
+
 .social i{
   margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .form_Position {
+    padding: 30px 20px;
+  }
+
+  .btn-grad {
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form_Position {
+    padding: 20px 15px;
+  }
+
+  .btn-grad {
+    padding: 10px 20px;
+  }
 }

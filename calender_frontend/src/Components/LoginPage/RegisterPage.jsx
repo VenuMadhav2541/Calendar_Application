@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import './register.css';
 import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,11 +8,11 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [Name, setName] = useState('');
   const [Email, setEmail] = useState('');
-  const [role, setRole] = useState('user'); // Default to 'user' role
+  const [role, setRole] = useState('user'); 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent page reload on form submit
+    e.preventDefault(); 
     setLoading(true);
     
     try {
@@ -25,7 +24,7 @@ const RegisterPage = () => {
         Email
       });
 
-      alert('Registration Successfully'); // Display success message
+      alert('Registration Successfully'); 
 
       navigate('/login');
     } catch (error) {
@@ -43,7 +42,7 @@ const RegisterPage = () => {
 
   return (
     <div className="main">
-      {loading && <Loading />} {/* Show loading animation during registration */}
+      {loading && <Loading />} 
       <form className="form_Position" onSubmit={handleRegister}>
         <div>
           <div className="main_head">
@@ -69,6 +68,7 @@ const RegisterPage = () => {
               type="text"
               placeholder="Name"
               value={Name}
+              onChange={(e) => setPassword(e.target.value)}
             />
         </div>
         <div>
@@ -76,6 +76,7 @@ const RegisterPage = () => {
               type="text"
               placeholder="Email"
               value={Email}
+              onChange={(e) => setPassword(e.target.value)}
             />
         </div>
         <div className="row">

@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';  
 import { CSVLink } from 'react-csv';
 import axios from 'axios';
+import './admin.css';
 import {
   Chart as ChartJS,
   CategoryScale,

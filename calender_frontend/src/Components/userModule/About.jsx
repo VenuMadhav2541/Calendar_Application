@@ -19,7 +19,7 @@ const About = () => {
   }, []);
 
   return (
-    <div>
+    <div className='scroll'>
       <Head />
       <link
         rel="stylesheet"

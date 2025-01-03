@@ -1,4 +1,7 @@
-
+.scroll {
+    overflow-y: auto !important;
+    overflow-x: hidden;
+}
 .corosel_main{
     background-color: black !important;
     background-size: cover;
@@ -12,9 +15,6 @@
 .para{
     margin-top: 20px;
     font-size: 20px !important;
-}
-.overflow-hidden {
-    overflow: hidden;
 }
 
 .drop-in {
@@ -45,3 +45,4 @@
     height: 40vh;
     width: 50vw;
 }
+
